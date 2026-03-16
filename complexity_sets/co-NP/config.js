@@ -14,36 +14,5 @@ window._CLASS_MANIFEST = window._CLASS_MANIFEST || {};
 window._CLASS_MANIFEST["co-NP"] = {
   "fullLabel": "co-NP — Complemento di NP",
   "definition": "definition.md",
-  "problems": [
-    {
-      "name": "Tautologia (TAUT)",
-      "folder": "tautologia-taut",
-      "description": "description.md",
-      "examples": [
-        {
-          "name": "Tautologia proposizionale",
-          "file": "example1.md"
-        },
-        {
-          "name": "Sistemi di prova per tautologie",
-          "file": "example2.md"
-        }
-      ]
-    },
-    {
-      "name": "Non-3-colorabilità",
-      "folder": "non-3-colorabilita",
-      "description": "description.md",
-      "examples": [
-        {
-          "name": "Sottografo K₄",
-          "file": "example1.md"
-        },
-        {
-          "name": "Grafo di Petersen",
-          "file": "example2.md"
-        }
-      ]
-    }
-  ]
+  "problems": []
 };
