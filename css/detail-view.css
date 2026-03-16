@@ -134,7 +134,7 @@
   padding-left: 14px;
 }
 #content-text {
-  font-family: 'EB Garamond', serif; font-size: 1.05rem;
+  font-family: 'EB Garamond', serif; font-size: 20px;
   line-height: 1.78; color: var(--text); width: calc(100%);
 }
 #content-text p  { margin-bottom: 14px; }
