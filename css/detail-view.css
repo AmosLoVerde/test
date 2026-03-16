@@ -135,11 +135,46 @@
 }
 #content-text {
   font-family: 'EB Garamond', serif; font-size: 1.05rem;
-  line-height: 1.78; color: var(--text); max-width: 660px;
+  line-height: 1.78; color: var(--text); width: calc(100%);
 }
 #content-text p  { margin-bottom: 14px; }
 #content-text strong { font-weight: 700; }
 body.light #content-text { color: var(--text); }
+
+#content-text ul {
+  padding-left: 2.5rem;
+}
+
+.definition-box {
+  border: 1px solid var(--box-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1.25rem 0;
+}
+
+.definition-box::before {
+  content: attr(data-title);
+  display: block;
+  padding: 9px 16px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: color-mix(in srgb, var(--box-color) 14%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--box-color) 20%, transparent);
+}
+
+.definition-box:not([data-title])::before {
+  display: none;
+}
+
+.definition-box .katex-display,
+.definition-box p {
+  padding: 1rem 1.25rem;
+  margin: 0;
+  background: color-mix(in srgb, var(--box-color) 4%, transparent);
+}
 
 /* ═══════════════════════════════════════════════════
    §9c — DIAGRAM WRAPPER TRANSITION

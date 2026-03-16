@@ -491,7 +491,7 @@ async function buildDetailSidebar(classId) {
   list.innerHTML = '';
 
   // ── Definition item ──────────────────────────────────────────
-  const defItem = _makeDvItem('definition', '§', 'Definizione', color, -1, -1, classId);
+  const defItem = _makeDvItem('definition', '§', 'Definition', color, -1, -1, classId);
   defItem.classList.add('definition');
   list.appendChild(defItem);
 
@@ -666,7 +666,7 @@ async function showContent(classId, type, pIdx, eIdx) {
   let title = '', html = '';
 
   if (type === 'definition') {
-    title = `Definizione — ${content.fullLabel}`;
+    title = `${content.fullLabel}`;
     html  = content.definition;
   } else if (type === 'problem') {
     const prob = content.problems[pIdx];
@@ -689,7 +689,21 @@ async function showContent(classId, type, pIdx, eIdx) {
   textEl.style.opacity  = '0';
   setTimeout(() => {
     titleEl.textContent = title;
-    textEl.innerHTML    = html;
+
+    // 1. Parse Markdown → HTML
+    textEl.innerHTML = window.marked ? marked.parse(html) : html;
+
+    // 2. Render LaTeX: $...$ inline e $$...$$ display
+    if (window.renderMathInElement) {
+      renderMathInElement(textEl, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true  },
+          { left: '$',  right: '$',  display: false },
+        ],
+        throwOnError: false,
+      });
+    }
+
     titleEl.style.opacity = '1';
     textEl.style.opacity  = '1';
   }, 180);
