@@ -1,0 +1,190 @@
+/* ================================================================
+   css/detail-view.css — VISTA DETTAGLIO
+   Pannello doppio sidebar, accordion, content panel.  Cambia qui per la schermata dettaglio.
+   ================================================================ */
+
+/* ═══════════════════════════════════════════════════
+   §9 — DETAIL VIEW: SIDEBAR DUAL-PANEL SYSTEM
+═══════════════════════════════════════════════════ */
+.sidebar-inner { position: relative; }
+
+#sidebar-class-view {
+  display: flex; flex-direction: column; height: 100%;
+  transition: opacity .30s ease, transform .30s ease;
+  contain: paint;
+}
+#sidebar-class-view.sv-out {
+  opacity: 0; transform: translateX(-18px); pointer-events: none;
+}
+#sidebar-detail-view {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none; transform: translateX(18px);
+  transition: opacity .30s ease, transform .30s ease;
+}
+#sidebar-detail-view.dv-in {
+  opacity: 1; pointer-events: all; transform: translateX(0);
+}
+
+/* Back button & detail header — mirrors #sidebar-header */
+#detail-header {
+  padding: 16px 48px 13px 18px;
+  border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+  transition: border-color .4s ease;
+}
+#detail-header .title {
+  font-family: 'EB Garamond', serif; font-size: 1.05rem;
+  font-weight: 700; font-style: italic; color: var(--text);
+  transition: color .4s ease; line-height: 1.25;
+  padding-top: 3px; /* optical alignment with button */
+  flex: 1; min-width: 0;
+}
+/* Detail footer — mirrors #sidebar-footer */
+#detail-footer {
+  padding: 12px; border-top: 1px solid var(--border); flex-shrink: 0;
+  transition: border-color .4s ease;
+}
+#btn-back {
+  width: 100%; padding: 7px; background: transparent; color: var(--text-muted);
+  border: 1px solid var(--border); border-radius: 5px;
+  font-family: 'JetBrains Mono', monospace; font-size: .61rem;
+  letter-spacing: .08em; cursor: pointer; transition: color .15s, border-color .15s;
+  text-align: center;
+}
+#btn-back:hover { color: var(--text); border-color: var(--border-hi); }
+
+/* Detail nav list */
+#detail-nav-list {
+  flex: 1; overflow-y: auto; padding: 8px 8px 10px;
+}
+#detail-nav-list::-webkit-scrollbar { width: 3px; }
+#detail-nav-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Detail footer — mirrors #sidebar-footer, always at bottom */
+#detail-footer {
+  padding: 12px; border-top: 1px solid var(--border); flex-shrink: 0;
+  transition: border-color .4s ease;
+}
+
+.dv-item {
+  display: flex; align-items: flex-start; gap: 7px;
+  padding: 8px 10px; border-radius: 5px; cursor: pointer;
+  user-select: none; color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace; font-size: .60rem;
+  letter-spacing: .03em;
+  border-left: 2px solid transparent;
+  transition: background .13s, color .13s, border-color .13s;
+}
+.dv-item:hover  { background: var(--surface3); color: var(--text); }
+.dv-item.active {
+  background: var(--surface3); color: var(--text);
+  border-left-color: var(--dv-color, var(--accent));
+}
+.dv-item.definition { color: var(--text); }
+.dv-item .dv-bullet {
+  flex-shrink: 0; margin-top: 1px; font-size: .70rem;
+  color: var(--dv-color, var(--accent));
+}
+.dv-subitems {
+  padding-left: 20px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .28s ease;
+}
+.dv-subitems.open { max-height: 200px; }
+.dv-subitem {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 8px; border-radius: 4px; cursor: pointer;
+  user-select: none; color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace; font-size: .57rem;
+  letter-spacing: .03em;
+  transition: background .13s, color .13s;
+}
+.dv-subitem:hover  { background: var(--surface3); color: var(--text); }
+.dv-subitem.active { color: var(--dv-color, var(--accent)); background: var(--surface3); }
+.dv-subitem::before { content: '↳'; color: var(--text-dim); margin-right: 2px; font-size: .60rem; }
+
+/* ═══════════════════════════════════════════════════
+   §9b — CONTENT PANEL
+═══════════════════════════════════════════════════ */
+#content-panel {
+  position: absolute; inset: 0; z-index: 3;
+  overflow-y: auto; padding: 44px 52px 52px;
+  /* Default left padding: sidebar is open, content starts normally */
+  padding-left: 52px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease, padding-left var(--sidebar-dur) var(--ease);
+  background: var(--bg);
+}
+/* Desktop only: when sidebar is collapsed, add left clearance for floating toggle button.
+   On mobile (#content-panel is full-width, no floating toggle), padding stays fixed. */
+@media (min-width: 601px) {
+  body:not(.sidebar-open) #content-panel {
+    padding-left: 72px;
+  }
+}
+#content-panel.cp-in { opacity: 1; pointer-events: all; }
+
+#content-title {
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-weight: 700; font-size: 1.70rem;
+  color: var(--text); margin-bottom: 20px; line-height: 1.25;
+  border-left: 3px solid var(--cp-color, var(--accent));
+  padding-left: 14px;
+}
+#content-text {
+  font-family: 'EB Garamond', serif; font-size: 1.05rem;
+  line-height: 1.78; color: var(--text); max-width: 660px;
+}
+#content-text p  { margin-bottom: 14px; }
+#content-text strong { font-weight: 700; }
+body.light #content-text { color: var(--text); }
+
+/* ═══════════════════════════════════════════════════
+   §9c — DIAGRAM WRAPPER TRANSITION
+═══════════════════════════════════════════════════ */
+#diagram-wrapper { transition: opacity .35s ease; }
+#diagram-wrapper.dw-out { opacity: 0; pointer-events: none; }
+
+/* ═══════════════════════════════════════════════════
+   §9d — HOVER EFFECTS (set-view only)
+═══════════════════════════════════════════════════ */
+body.set-view .cls-group,
+body.set-view .intersection-group { cursor: pointer; }
+
+/* Transitions on groups — opacity managed by JS (never by CSS has-hover).
+ * JS sets inline opacity so animations are never interrupted. */
+.cls-group, .intersection-group {
+  transition: opacity .22s ease, filter .22s ease;
+  cursor: default;
+}
+/* Hovered shape: brightness glow. Opacity kept at 1 by JS. */
+.cls-group.cls-hov,
+.intersection-group.cls-hov {
+  filter: brightness(1.28) drop-shadow(0 0 7px rgba(255,255,255,.30));
+  cursor: pointer;
+}
+/* Light mode: darken instead of brighten (bright shapes on light bg need contrast) */
+body.light .cls-group.cls-hov,
+body.light .intersection-group.cls-hov {
+  filter: brightness(0.70) saturate(1.8) drop-shadow(0 0 6px rgba(0,0,0,.35));
+}
+/* Hard-curve interior fill — shown only when group is hovered */
+path[data-role="hover-fill"] {
+  fill-opacity: 0;
+  transition: fill-opacity .22s ease;
+  pointer-events: none;
+}
+.cls-group.cls-hov path[data-role="hover-fill"] {
+  fill-opacity: 0.14;
+}
+body.light .cls-group.cls-hov path[data-role="hover-fill"] {
+  fill-opacity: 0.30;
+}
+
+/* Hide zoom ± in detail view; keep download enabled */
+body.detail-view #btn-zoom-in,
+body.detail-view #btn-zoom-out { display: none !important; }
+body.detail-view #btn-download { opacity: 1 !important; cursor: pointer !important; }
+body.detail-view #btn-download.dl-disabled { opacity: 1 !important; cursor: pointer !important; }

@@ -1,0 +1,1 @@
+<p><strong>Esempio: 3/2-approssimazione</strong></p><p>L'algoritmo di Christofides (1976) garantisce un tour di lunghezza al più 3/2 · OPT per TSP metrico:</p><p>1. Calcola minimum spanning tree T. 2. Trova matching perfetto minimo M sui vertici di grado dispari di T. 3. Combina T∪M per ottenere multigrafo euleriano. 4. Trova circuito euleriano, shortcut sui vertici ripetuti.</p>

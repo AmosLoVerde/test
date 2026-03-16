@@ -1,0 +1,200 @@
+/* ================================================================
+   css/layout.css — STRUTTURA DELLA PAGINA
+   Sidebar, main area, zoom controls, responsive.  Cambia qui per dimensioni/posizioni.
+   ================================================================ */
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR TOGGLE — always visible, always clickable
+═══════════════════════════════════════════════════ */
+#btn-toggle {
+  position: fixed;
+  z-index: 200;
+  width: 32px; height: 32px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background .18s ease, color .18s ease, border-color .18s ease,
+    left var(--sidebar-dur) var(--ease),
+    box-shadow .18s ease;
+}
+/* When sidebar open: button sits just inside the sidebar's right edge */
+body.sidebar-open #btn-toggle {
+  top: 16px;
+  left: calc(var(--sw) - 42px);
+  box-shadow: none;
+}
+/* When sidebar closed: button anchors top-left of viewport */
+body:not(.sidebar-open) #btn-toggle {
+  top: 14px;
+  left: 14px;
+  box-shadow: 0 2px 14px rgba(0,0,0,.35);
+}
+#btn-toggle:hover { background: var(--surface3); color: var(--text); border-color: var(--border-hi); }
+#btn-toggle svg { width: 16px; height: 16px; pointer-events: none; }
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════ */
+#sidebar {
+  position: relative; z-index: 10;
+  width: var(--sw); min-width: var(--sw);
+  background: var(--surface); border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transition:
+    width     var(--sidebar-dur) var(--ease),
+    min-width var(--sidebar-dur) var(--ease),
+    background .4s ease, border-color .4s ease;
+  overflow: hidden;
+}
+#sidebar.collapsed { width: 0; min-width: 0; }
+
+.sidebar-inner {
+  width: var(--sw); min-width: var(--sw); height: 100%;
+  display: flex; flex-direction: column;
+  transition: opacity calc(var(--sidebar-dur) * 0.6) ease;
+}
+#sidebar.collapsed .sidebar-inner { opacity: 0; pointer-events: none; }
+
+#sidebar-header {
+  /* Padding-right leaves room for the floating toggle button */
+  padding: 16px 48px 13px 18px;
+  border-bottom: 1px solid var(--border); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  transition: border-color .4s ease;
+}
+#sidebar-header .title {
+  font-family: 'EB Garamond', serif; font-size: 1.15rem;
+  font-weight: 600; letter-spacing: .01em; color: var(--text);
+  transition: color .4s ease;
+}
+.header-btns {
+  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+}
+.hdr-btn {
+  width: 30px; height: 30px; background: transparent;
+  border: 1px solid var(--border); border-radius: 5px;
+  color: var(--text-muted); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background .15s, color .15s, border-color .15s;
+}
+.hdr-btn:hover { background: var(--surface3); color: var(--text); border-color: var(--border-hi); }
+.hdr-btn svg { width: 15px; height: 15px; pointer-events: none; }
+
+#class-list {
+  flex: 1; padding: 12px 12px 6px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 4px;
+}
+#class-list::-webkit-scrollbar { width: 3px; }
+#class-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.class-group-label {
+  font-size: .54rem; color: var(--text-dim); text-transform: uppercase;
+  letter-spacing: .13em; padding: 10px 4px 3px;
+}
+.class-item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 11px;
+  border-radius: 5px; border: 1px solid var(--border); background: var(--surface2);
+  cursor: pointer; user-select: none;
+  transition: border-color .15s, background .15s;
+  contain: layout style;
+}
+.class-item:hover { border-color: var(--border-hi); background: var(--surface3); }
+.class-item.checked {
+  border-color: color-mix(in srgb, var(--cls-color) 45%, transparent);
+  background:   color-mix(in srgb, var(--cls-color) 9%, var(--surface2));
+}
+.cls-check {
+  appearance: none; -webkit-appearance: none;
+  width: 14px; height: 14px; border: 1.5px solid var(--border-hi);
+  border-radius: 3px; background: var(--bg); cursor: pointer;
+  position: relative; flex-shrink: 0; transition: background .12s, border-color .12s;
+}
+.cls-check:checked { background: var(--cls-color); border-color: var(--cls-color); }
+.cls-check:checked::after {
+  content: ''; position: absolute; top: 1.5px; left: 3.5px;
+  width: 4px; height: 7px; border: 1.5px solid #fff;
+  border-top: none; border-left: none; transform: rotate(42deg);
+}
+.cls-swatch {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cls-color); box-shadow: 0 0 6px var(--cls-color); flex-shrink: 0;
+}
+.cls-label-wrap { flex: 1; }
+.cls-label-main {
+  font-family: 'EB Garamond', serif; font-style: italic;
+  font-size: .93rem; color: var(--text); display: block; line-height: 1.2;
+  transition: color .4s ease;
+}
+.cls-label-sub {
+  font-size: .56rem; color: var(--text-muted); display: block; margin-top: 1px;
+  transition: color .4s ease;
+}
+
+#sidebar-footer {
+  padding: 12px; border-top: 1px solid var(--border); flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 6px;
+  transition: border-color .4s ease;
+}
+#btn-reset {
+  width: 100%; padding: 7px; background: transparent; color: var(--text-muted);
+  border: 1px solid var(--border); border-radius: 5px;
+  font-family: 'JetBrains Mono', monospace; font-size: .61rem;
+  letter-spacing: .08em; cursor: pointer; transition: color .15s, border-color .15s;
+}
+#btn-reset:hover { color: var(--text); border-color: var(--border-hi); }
+
+/* ═══════════════════════════════════════════════════
+   MAIN AREA
+═══════════════════════════════════════════════════ */
+#main { flex:1; position:relative; z-index:1; display:flex; flex-direction:column; overflow:hidden; }
+#diagram-wrapper {
+  flex:1; display:flex; align-items:center; justify-content:center;
+  padding:32px 24px 64px; position:relative;
+}
+#diagram-svg { width:100%; height:100%; overflow:visible; cursor:grab; contain: paint; }
+#diagram-svg:active { cursor:grabbing; }
+#diagram-root { will-change: transform; contain: strict; }
+
+#empty-state {
+  position:absolute; display:flex; flex-direction:column;
+  align-items:center; gap:16px; text-align:center;
+  pointer-events:none; transition:opacity .35s;
+}
+#empty-state.hidden { opacity:0; }
+.empty-sym { font-family:'EB Garamond',serif; font-style:italic; font-size:4rem; color:var(--text-dim); opacity:.6; }
+.empty-msg  { font-size:.61rem; color:var(--text-dim); letter-spacing:.08em; text-transform:uppercase; max-width:220px; line-height:1.8; }
+
+/* ═══════════════════════════════════════════════════
+   ZOOM CONTROLS
+═══════════════════════════════════════════════════ */
+#zoom-controls {
+  position:fixed; bottom:22px; right:24px; z-index:200;
+  display:flex; flex-direction:column; gap:5px;
+}
+#zoom-controls button {
+  width:34px; height:34px; background:var(--surface2);
+  border:1px solid var(--border); border-radius:6px;
+  color:var(--text-muted); font-size:20px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .12s, color .12s, border-color .12s, opacity .18s;
+  font-family:'JetBrains Mono',monospace;
+}
+#zoom-controls button:hover { background:var(--surface3); color:var(--text); border-color:var(--border-hi); }
+#zoom-controls button:active { transform:scale(.92); }
+#btn-download svg { width:15px; height:15px; pointer-events:none; }
+#btn-download:disabled,
+#btn-download.dl-disabled {
+  opacity:.30; cursor:not-allowed;
+}
+#btn-download:disabled:hover,
+#btn-download.dl-disabled:hover {
+  background:var(--surface2); color:var(--text-muted); border-color:var(--border);
+}
+/* Separator gap between download and zoom buttons */
+#btn-download { margin-bottom:6px; }
+

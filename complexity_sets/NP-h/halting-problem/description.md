@@ -1,0 +1,1 @@
+<p>Il <strong>Problema della Fermata</strong> chiede: dato un programma arbitrario P e un input I, P terminerà eventualmente eseguendo su I?</p><p>Turing (1936) ne ha dimostrato l'indecidibilità via diagonalizzazione. È NP-Hard (in realtà molto più difficile — non ricorsivamente enumerabile in generale) perché ogni problema NP si riduce a una query di terminazione.</p>

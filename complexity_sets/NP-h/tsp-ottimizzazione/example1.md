@@ -1,0 +1,1 @@
+<p><strong>Esempio: soluzione esatta con programmazione dinamica</strong></p><p>Held-Karp risolve TSP esattamente in O(2ⁿ · n²) con DP sui sottoinsiemi. Per n=20 città: 2²⁰ · 400 ≈ 4×10⁸ — fattibile. Per n=50: 2⁵⁰ · 2500 ≈ 2.8×10¹⁸ — non fattibile.</p><p>Stato: dp[S][v] = costo minimo per visitare tutte le città in S, terminando in v, partendo dalla città 0.</p>

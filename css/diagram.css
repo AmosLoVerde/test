@@ -1,0 +1,185 @@
+/* ================================================================
+   css/diagram.css — ANIMAZIONI E HOVER DEL DIAGRAMMA
+   Entrata/uscita insiemi, hover glow, tooltip.  Cambia qui per animazioni visive.
+   ================================================================ */
+
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════ */
+.cls-entering { animation: cls-appear .38s ease both; }
+@keyframes cls-appear    { from { opacity:0 } to { opacity:1 } }
+.cls-exiting {
+  animation: cls-disappear .38s cubic-bezier(0.4,0,1,1) both !important;
+  pointer-events: none !important;
+}
+/* Slower, silkier fade for the reset-all cascade */
+.cls-reset-exit {
+  animation: cls-disappear .52s cubic-bezier(0.4,0,0.6,1) both !important;
+  pointer-events: none !important;
+}
+@keyframes cls-disappear { from { opacity:1 } to { opacity:0 } }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+═══════════════════════════════════════════════════ */
+
+/* Tablet: slightly narrower sidebar */
+@media (max-width: 900px) {
+  :root { --sw: 240px; }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  :root {
+    --mob-bar-h:  58px;
+    --mob-menu-h: 40vh;
+    --mob-dur:    .65s;
+    --mob-ease:   cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  body { flex-direction: column; height: 100dvh; overflow: hidden; }
+
+  /* Diagram occupies the space ABOVE bar+menu */
+  #main { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+  #diagram-wrapper {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px 8px;
+    transition: padding-bottom var(--mob-dur) var(--mob-ease);
+  }
+  body.sidebar-open  #diagram-wrapper { padding-bottom: calc(var(--mob-bar-h) + var(--mob-menu-h) + 4px); }
+  body:not(.sidebar-open) #diagram-wrapper { padding-bottom: calc(var(--mob-bar-h) + 8px); }
+
+  /* Always show full names on mobile */
+  .cls-label-sub { display: block !important; }
+
+  /* ── Sidebar drawer — sits just above the bar ── */
+  #sidebar {
+    position: fixed; z-index: 300;
+    left: 0; right: 0; bottom: var(--mob-bar-h);
+    width: 100% !important; min-width: 0 !important;
+    height: var(--mob-menu-h);
+    border-right: none; border-radius: 0;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: none;
+    transition: transform var(--mob-dur) var(--mob-ease),
+                background .4s ease;
+    transform: translateY(0);
+    overflow: hidden; will-change: transform;
+  }
+  #sidebar.collapsed { transform: translateY(calc(100% + var(--mob-bar-h))); width: 100% !important; min-width: 0 !important; }
+
+  .sidebar-inner { width: 100% !important; min-width: 0 !important; height: 100%; transition: opacity calc(var(--mob-dur)*0.4) ease; }
+  #sidebar.collapsed .sidebar-inner { opacity: 0; pointer-events: none; }
+
+  /* Drag handle — REMOVED (clean look without pill) */
+  #sidebar-header {
+    padding: 12px 14px 10px; flex-direction: row; align-items: center; gap: 10px;
+    position: relative; border-bottom: 1px solid var(--border);
+  }
+  #sidebar-header .title { font-size: .9rem; }
+  .header-btns { }
+
+  /* Hide desktop toggle */
+  #btn-toggle { display: none !important; }
+
+  /* ── Mobile control bar — fixed at very bottom, rounded top ── */
+  #mobile-bar {
+    display: flex !important;
+    position: fixed; z-index: 301;
+    left: 0; right: 0; bottom: 0;
+    height: var(--mob-bar-h);
+    padding: 9px 14px;
+    gap: 10px; align-items: center;
+    background: var(--surface);
+    border-top: 1.5px solid var(--border-hi);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 24px rgba(0,0,0,.22);
+  }
+
+  #btn-mobile-toggle {
+    flex: 1; height: 38px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .05em;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    transition: background .15s, border-color .15s;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0 6px;
+  }
+  #btn-mobile-toggle:active { background: var(--surface3); border-color: var(--border-hi); }
+  #btn-mobile-toggle svg { width: 14px; height: 14px; flex-shrink: 0; pointer-events: none; }
+
+  #btn-mobile-download {
+    width: 38px; height: 38px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    color: var(--text-muted); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: background .15s, border-color .15s, opacity .18s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #btn-mobile-download svg { width: 15px; height: 15px; pointer-events: none; }
+  #btn-mobile-download.dl-disabled { opacity: .3; cursor: not-allowed; }
+  #btn-mobile-download:active { background: var(--surface3); }
+
+  /* Hide desktop zoom */
+  #zoom-controls { display: none !important; }
+  /* Hide footer reset on mobile — it moves into the mobile bar */
+  #sidebar-footer { display: none !important; }
+
+  #btn-mobile-reset {
+    height: 38px;
+    flex: 1;
+    padding: 0 6px;
+    font-size: .62rem;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .05em;
+    cursor: pointer; white-space: nowrap;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background .15s, border-color .15s, color .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #btn-mobile-reset:active { background: var(--surface3); color: var(--text); border-color: var(--border-hi); }
+
+  /* Detail header on mobile mirrors sidebar-header layout exactly */
+  #sidebar-detail-view { width: 100% !important; min-width: 0 !important; }
+  #detail-header {
+    padding: 12px 14px 10px;
+    flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 8px;
+    position: relative; border-bottom: 1px solid var(--border);
+  }
+  #detail-header .title { font-size: .9rem; padding-top: 4px; flex: 1; min-width: 0; }
+  #detail-header .header-btns { flex-shrink: 0; margin-top: 0; }
+
+  /* Hide desktop back-button footer on mobile — back goes in mobile bar */
+  #detail-footer { display: none !important; }
+
+  .class-item { padding: 11px 14px; }
+  .cls-check { width: 18px; height: 18px; }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+  :root { --mob-menu-h: 45vh; }
+}
+#diagram-tooltip {
+  position:fixed; z-index:500; pointer-events:none;
+  background:var(--surface2); border:1px solid var(--border-hi);
+  border-radius:6px; padding:7px 11px 8px;
+  box-shadow:0 8px 28px rgba(0,0,0,.4);
+  opacity:0; transform:translateY(4px);
+  transition: opacity .16s ease, transform .16s ease, background .4s ease, border-color .4s ease;
+  max-width:240px;
+}
+#diagram-tooltip.visible { opacity:1; transform:translateY(0); }
+.tip-label {
+  font-family:'EB Garamond',serif; font-style:italic;
+  font-size:.95rem; color:var(--text); display:block; line-height:1.2;
+}
+.tip-sub { font-size:.58rem; color:var(--text-muted); display:block; margin-top:3px; letter-spacing:.04em; }
+.tip-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+

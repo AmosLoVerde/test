@@ -1,0 +1,1 @@
+<p><strong>Hamiltonian Path</strong> chiede: dato un grafo non orientato G, esiste un cammino che visita ogni vertice esattamente una volta?</p><p>Il problema è NP-completo. Il certificato è una sequenza di vertici — verificabile in O(n²) controllando adiacenza e copertura. Non è noto alcun algoritmo polinomiale.</p>

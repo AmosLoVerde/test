@@ -1,0 +1,1 @@
+<p><strong>Esempio: assenza di ranking function</strong></p><p>Per provare che un programma non termina, si cerca un recurrent set R: un insieme di stati del programma tale che da ogni stato in R il programma rimanga in R per sempre. Trovare R richiede di risolvere un problema di soddisfacibilità co-NP-Hard sui vincoli degli stati del programma.</p>

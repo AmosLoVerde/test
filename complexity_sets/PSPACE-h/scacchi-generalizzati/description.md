@@ -1,0 +1,1 @@
+<p>Gli <strong>Scacchi Generalizzati</strong> (scacchiera n×n, lunghezza di partita limitata polinomialmente) sono PSPACE-Hard. Il gioco completo (lunghezza illimitata) è EXPTIME-completo. Determinare se il Bianco ha uno scacco matto forzato da una posizione data è un gioco a due giocatori con informazione perfetta.</p>

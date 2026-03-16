@@ -1,0 +1,1 @@
+<p><strong>Esempio: bin packing infeasibile</strong></p><p>Dimostrare che 5 oggetti di dimensioni {0.6, 0.7, 0.8, 0.6, 0.7} non possono essere impacchettati in 3 bin di capacità 1. Dimensione totale = 3.4 > 3, quindi l'infeasibility segue da un semplice lower bound LP: ∑dimensioni > k·capacità ⇒ infeasibile.</p>

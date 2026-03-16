@@ -1,0 +1,1 @@
+<p><strong>UNSAT</strong> chiede: data una formula CNF φ, è φ insoddisfacibile? UNSAT è il complemento di SAT ed è il problema co-NP-completo canonico.</p><p>Un certificato NO è un'assegnazione soddisfacente (dimensione polinomiale, verificabile in O(n)). Un certificato YES (prova di insoddisfacibilità) richiede, in generale, prove per risoluzione di dimensione esponenziale.</p>

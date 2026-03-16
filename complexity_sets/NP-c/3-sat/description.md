@@ -1,0 +1,1 @@
+<p><strong>3-SAT</strong> è la restrizione di SAT a formule in 3-CNF (ogni clausola ha esattamente 3 letterali). Rimane NP-completo (prova via riduzione da SAT generale) ma è sintatticamente più semplice, rendendolo il punto di partenza standard per le prove di NP-hardness.</p><p>2-SAT, al contrario, è in P (risolvibile tramite componenti fortemente connesse in O(n+m)).</p>

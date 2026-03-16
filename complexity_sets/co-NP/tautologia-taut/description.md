@@ -1,0 +1,1 @@
+<p><strong>TAUT</strong> chiede: una data formula proposizionale φ è una tautologia? (Cioè vera sotto tutte le assegnazioni.) TAUT è il complemento di SAT ed è co-NP-completo.</p><p>Un certificato NO (assegnazione falsificante) è di dimensione polinomiale e verificabile in tempo lineare — ponendo TAUT in co-NP. Non è noto alcun certificato YES polinomiale.</p>

@@ -1,0 +1,55 @@
+/* ================================================================
+   css/theme.css — COLORI E TIPOGRAFIA
+   Variabili CSS: --bg, --text, --accent...  Cambia qui per la palette.
+   ================================================================ */
+
+/* ═══════════════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES — DARK & LIGHT THEMES
+═══════════════════════════════════════════════════════ */
+:root {
+  --bg:         #080d18;
+  --surface:    #0c1220;
+  --surface2:   #111928;
+  --surface3:   #18243a;
+  --border:     #1e2f48;
+  --border-hi:  #2e4a72;
+  --text:       #d4e4ff;
+  --text-muted: #5a7ba0;
+  --text-dim:   #2e4464;
+  --accent:     #4a9eff;
+  --sw:         278px;
+  --ease:       cubic-bezier(0.4,0,0.2,1);
+  --sidebar-dur:.55s;
+  color-scheme: dark;
+}
+body.light {
+  --bg:         #f5f7fc;
+  --surface:    #ffffff;
+  --surface2:   #eef1f8;
+  --surface3:   #e2e7f2;
+  --border:     #c8d2e8;
+  --border-hi:  #9aaaca;
+  --text:       #111830;
+  --text-muted: #5060a0;
+  --text-dim:   #9aaac8;
+  --accent:     #1d4ed8;
+  color-scheme: light;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg); color: var(--text);
+  height: 100vh; overflow: hidden; display: flex;
+  transition: background .4s ease, color .4s ease;
+}
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image: radial-gradient(circle, rgba(74,158,255,.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+body.light::before {
+  background-image: radial-gradient(circle, rgba(29,78,216,.06) 1px, transparent 1px);
+}
+

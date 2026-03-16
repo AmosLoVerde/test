@@ -1,0 +1,1 @@
+<p><strong>Esempio: verifica di una 3-SAT</strong></p><p>Formula: (x₁ ∨ x₂ ∨ ¬x₃) ∧ (¬x₁ ∨ x₃ ∨ x₄) ∧ (x₂ ∨ ¬x₃ ∨ ¬x₄)</p><p>Testimone proposto: x₁=V, x₂=F, x₃=F, x₄=V. Verifica: Clausola 1: V∨F∨V=V ✓. Clausola 2: F∨F∨V=V ✓. Clausola 3: F∨V∨F=V ✓. Certificato YES valido verificato in O(m·k) = O(n).</p>

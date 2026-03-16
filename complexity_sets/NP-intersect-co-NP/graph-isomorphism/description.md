@@ -1,0 +1,1 @@
+<p>Il <strong>Graph Isomorphism (GI)</strong> chiede: dati grafi G e H, sono isomorfi? GI ∈ NP (certificato: la biiezione f:V(G)→V(H)) e GI ∈ co-NP (per il certificato di Schwartz-Zippel per la non-isomorfìa).</p><p>GI non è noto essere in P e non è noto essere NP-completo. Babai (2015) ha ottenuto tempo quasi-polinomiale n^{O(log n)}, il miglior risultato noto.</p>

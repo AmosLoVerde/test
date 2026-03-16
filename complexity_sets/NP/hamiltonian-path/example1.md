@@ -1,0 +1,1 @@
+<p><strong>Esempio: verifica su grafo 6 nodi</strong></p><p>Grafo: 1-2-3-4-5-6 con archi aggiuntivi 1-4, 2-5, 3-6.</p><p>Cammino hamiltoniano proposto: 1→2→3→6→5→4. Verifica: (1,2)∈E ✓, (2,3)∈E ✓, (3,6)∈E ✓, (6,5)∈E ✓, (5,4)∈E ✓, tutti e 6 i vertici visitati una volta ✓. Certificato valido in O(n) passi.</p>

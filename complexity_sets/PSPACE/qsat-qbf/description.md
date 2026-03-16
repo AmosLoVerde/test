@@ -1,0 +1,1 @@
+<p>Il <strong>Quantified Boolean Formula (QBF / QSAT)</strong> chiede: è vera una formula booleana completamente quantificata Φ = Q₁x₁ Q₂x₂...Qₙxₙ.φ(x₁,...,xₙ), dove ogni Qᵢ è ∃ o ∀?</p><p>QBF è PSPACE-completo (Stockmeyer-Meyer, 1973). I quantificatori alternati modellano giochi a due giocatori, rendendo QBF l'esempio canonico di computazione PSPACE.</p>

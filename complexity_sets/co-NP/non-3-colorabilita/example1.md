@@ -1,0 +1,1 @@
+<p><strong>Esempio: K₄ implica non-3-colorabilità</strong></p><p>Se un grafo G contiene K₄ (grafo completo su 4 nodi) come sottografo, non può essere 3-colorato (K₄ richiede 4 colori per definizione di colorazione propria).</p><p>Trovare K₄ è un certificato polinomiale per la non-3-colorabilità in casi speciali. Tuttavia, il problema generale rimane co-NP-completo.</p>

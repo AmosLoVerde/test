@@ -1,0 +1,1 @@
+<p><strong>Esempio: loop infinito certificato</strong></p><p>Programma: while(x > 0) { x = x + 1; }. Per input x=1: il loop gira indefinitamente (x cresce senza limite). Il testimone "lasso" è lo stato x=1 → x=2 → x=3 → ..., certificando la non-terminazione per questo input.</p>

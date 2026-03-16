@@ -1,0 +1,1 @@
+<p>Il <strong>Go Generalizzato</strong> su una scacchiera n×n è PSPACE-Hard (per posizioni di endgame ko) e EXPTIME-completo in generale. La complessità del gioco proviene dall'enorme fattore di ramificazione e dalla lunga durata delle partite.</p>

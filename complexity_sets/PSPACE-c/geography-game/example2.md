@@ -1,0 +1,1 @@
+<p><strong>Esempio: movimento token su grafo</strong></p><p>Grafo: 6 nodi, archi 1→2, 1→3, 2→4, 3→4, 4→5, 5→6. Token parte da 1. Analisi: se P1 va a 2: P2→4, P1→5, P2→6, P1 non può muoversi → P1 perde. Se P1 va a 3: stessa situazione. Il giocatore 1 non ha strategia vincente da questa posizione.</p>

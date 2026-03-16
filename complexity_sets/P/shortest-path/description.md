@@ -1,0 +1,1 @@
+<p><strong>Shortest Path</strong> chiede: dato un grafo pesato diretto G e nodi u, v, qual è il cammino di costo minimo da u a v?</p><p>L'algoritmo di Dijkstra risolve il problema in O((V+E) log V) con una coda a priorità (pesi non negativi). Bellman-Ford gestisce pesi negativi in O(VE).</p>

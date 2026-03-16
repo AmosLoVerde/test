@@ -1,0 +1,1 @@
+<p><strong>Esempio: enumerazione esaustiva</strong></p><p>Per il grafo di Petersen (10 vertici, 15 archi), non esiste una colorazione propria con 3 colori. Prova: il grafo è 4-cromatico. Un certificato informatico enumererebbe tutte le 3^10 = 59.049 assegnazioni verificando che nessuna sia valida — esponenziale nella dimensione dell'input.</p>

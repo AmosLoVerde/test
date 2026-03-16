@@ -1,0 +1,1 @@
+<p><strong>Esempio: verifica di non-tautologia</strong></p><p>Formula: (x ∨ y) → (x ∧ y). È una tautologia? NO: prendere x=V, y=F. Allora (V∨F)=V ma (V∧F)=F, quindi V→F = F.</p><p>L'assegnazione (x=V, y=F) è un compatto certificato NO di dimensione O(n) — verificabile in tempo polinomiale valutando la formula. Questo certificato pone TAUT in co-NP.</p>

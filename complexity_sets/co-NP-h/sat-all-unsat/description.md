@@ -1,0 +1,1 @@
+<p><strong>ALL-UNSAT</strong> chiede: data una formula proposizionale φ(x), è φ universalmente falsa per ogni assegnazione a x? Questo è il problema co-NP-Hard prototipico.</p><p>Più precisamente, ∀x.¬φ(x) — la quantificazione universale su una proprietà verificabile in NP. Questo si colloca al livello Π₂ᴾ della gerarchia polinomiale.</p>
