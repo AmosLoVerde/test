@@ -12,7 +12,7 @@ $$P = \lbrace A\text{ | } \exists c>0\text{, }\exists \text{ algoritmo determini
 </div>
 dove:
 
-* $A$ è un <b>problema decisionale</b>, cioè una funzione $A : I(A) \to \lbrace \text{yes, no}\rbrace$; per convenzione $\text{yes} = 1$, $\text{no} = 0$..
+* $A$ è un <b>problema decisionale</b>, cioè una funzione $A : I(A) \to \lbrace \text{yes, no}\rbrace$; per convenzione $\text{yes} = 1$, $\text{no} = 0$.
 * $I(A)$ è l'<b>insieme delle istanze</b> ammissibili del problema $A$.
 * $x$ è una generica <b>istanza di input</b>, $x\in I(A)$.
 * $|x|$ è la <b>lunghezza della codifica</b> dell'istanza $x$, anche detta la sua <b>taglia</b>.

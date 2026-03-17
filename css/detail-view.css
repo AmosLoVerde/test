@@ -145,6 +145,10 @@ body.light #content-text { color: var(--text); }
   padding-left: 2.5rem;
 }
 
+#content-text ol {
+  padding-left: 2.5rem;
+}
+
 .definition-box {
   border: 1px solid var(--box-color);
   border-radius: 10px;
