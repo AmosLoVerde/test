@@ -8,22 +8,27 @@
 ═══════════════════════════════════════════════════ */
 .sidebar-inner { position: relative; }
 
+/* Sidebar dual-panel transition: opacity-only (no translateX).
+   Using transform: translateX on Safari implicitly promotes the entire sidebar
+   subtree to a GPU compositor layer for the duration of the transition,
+   keeping it in VRAM at the same time as the SVG diagram.
+   Opacity alone is enough visually and is a pure compositor operation. */
 #sidebar-class-view {
   display: flex; flex-direction: column; height: 100%;
-  transition: opacity .30s ease, transform .30s ease;
+  transition: opacity .28s ease;
   contain: paint;
 }
 #sidebar-class-view.sv-out {
-  opacity: 0; transform: translateX(-18px); pointer-events: none;
+  opacity: 0; pointer-events: none;
 }
 #sidebar-detail-view {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
-  opacity: 0; pointer-events: none; transform: translateX(18px);
-  transition: opacity .30s ease, transform .30s ease;
+  opacity: 0; pointer-events: none;
+  transition: opacity .28s ease;
 }
 #sidebar-detail-view.dv-in {
-  opacity: 1; pointer-events: all; transform: translateX(0);
+  opacity: 1; pointer-events: all;
 }
 
 /* Back button & detail header — mirrors #sidebar-header */
@@ -111,11 +116,11 @@
 #content-panel {
   position: absolute; inset: 0; z-index: 3;
   overflow-y: auto; padding: 44px 52px 52px;
-  /* Default left padding: sidebar is open, content starts normally */
   padding-left: 52px;
   opacity: 0; pointer-events: none;
   transition: opacity .35s ease, padding-left var(--sidebar-dur) var(--ease);
   background: var(--bg);
+  contain: paint;   /* isolates scrolling repaints from the SVG diagram */
 }
 /* Desktop only: when sidebar is collapsed, add left clearance for floating toggle button.
    On mobile (#content-panel is full-width, no floating toggle), padding stays fixed. */
@@ -192,22 +197,20 @@ body.light #content-text { color: var(--text); }
 body.set-view .cls-group,
 body.set-view .intersection-group { cursor: pointer; }
 
-/* Transitions on groups — opacity managed by JS (never by CSS has-hover).
- * JS sets inline opacity so animations are never interrupted. */
+/* opacity: pure compositor op (zero paint cost).
+   filter: removed from CSS transition -- "transition: filter" causes Safari (and
+   Chrome) to pre-allocate compositor layers for EVERY .cls-group element, even
+   those never hovered. Hover filter is now set directly via element.style.filter
+   in diagram-interaction.js (_addHov/_removeHov). On Safari it is skipped
+   entirely: SVG filter on animated geometry = CPU software render per frame. */
 .cls-group, .intersection-group {
-  transition: opacity .22s ease, filter .22s ease;
+  transition: opacity .22s ease;
   cursor: default;
 }
-/* Hovered shape: brightness glow. Opacity kept at 1 by JS. */
+/* Hovered shape: cursor only. Filter is applied in JS via _addHov(). */
 .cls-group.cls-hov,
 .intersection-group.cls-hov {
-  filter: brightness(1.28) drop-shadow(0 0 7px rgba(255,255,255,.30));
   cursor: pointer;
-}
-/* Light mode: darken instead of brighten (bright shapes on light bg need contrast) */
-body.light .cls-group.cls-hov,
-body.light .intersection-group.cls-hov {
-  filter: brightness(0.70) saturate(1.8) drop-shadow(0 0 6px rgba(0,0,0,.35));
 }
 /* Hard-curve interior fill — shown only when group is hovered */
 path[data-role="hover-fill"] {
@@ -227,3 +230,36 @@ body.detail-view #btn-zoom-in,
 body.detail-view #btn-zoom-out { display: none !important; }
 body.detail-view #btn-download { opacity: 1 !important; cursor: pointer !important; }
 body.detail-view #btn-download.dl-disabled { opacity: 1 !important; cursor: pointer !important; }
+
+
+/* ================================================================
+   PER-ENGINE DETAIL VIEW OPTIMIZATIONS
+   ================================================================ */
+
+/* -- Blink: content-visibility on detail nav items --------------- */
+html.engine-blink .dv-item,
+html.engine-blink .dv-subitem {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 32px;
+}
+
+/* -- Gecko: thinner scrollbar in detail nav list ----------------- */
+html.engine-gecko #detail-nav-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* -- WebKit: momentum scroll in content panel -------------------- */
+html.engine-webkit #content-panel {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* -- Performance tier: simplify transitions on low-end ----------- */
+html.perf-low #sidebar-class-view,
+html.perf-low #sidebar-detail-view {
+  transition-duration: 0.15s;
+}
+html.perf-low #content-panel {
+  transition: opacity 0.15s ease;
+}
+

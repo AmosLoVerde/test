@@ -122,13 +122,19 @@
     <span class="tip-sub"></span>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       DATI DI CONFIGURAZIONE
+       Devono precedere tutti i moduli js/ — vengono letti al
+       parse-time da dependency-resolver.js e geometry.js.
+  ════════════════════════════════════════════════════════════ -->
+
   <!-- CLASS DEFINITIONS: colori, label, dipendenze, priorità z-order -->
   <script src="setting_sets/class-definitions.js"></script>
 
   <!-- SCENARIOS: geometria del diagramma per ogni combinazione di classi -->
   <script src="setting_sets/scenarios.js"></script>
 
-  <!-- CONTENUTI DIDATTICI: un file per classe in complexity_sets/ -->
+  <!-- CONTENUTI DIDATTICI: un config.js per classe in complexity_sets/ -->
   <script src="complexity_sets/P/config.js"></script>
   <script src="complexity_sets/NP/config.js"></script>
   <script src="complexity_sets/NP-c/config.js"></script>
@@ -141,7 +147,43 @@
   <script src="complexity_sets/PSPACE-h/config.js"></script>
   <script src="complexity_sets/NP-intersect-co-NP/config.js"></script>
 
-  <!-- JS (unico file) -->
-  <script src="js/main.js"></script>
+  <!-- ═══════════════════════════════════════════════════════════
+       MODULI JS  — ordine obbligatorio (ciascuno dipende dai precedenti)
+       Documentazione completa: js/README_js.md
+  ════════════════════════════════════════════════════════════ -->
+
+  <!-- 1. Variabili globali, costanti, cache DOM, utilità SVG -->
+  <script src="js/state.js"></script>
+
+  <!-- 2. BFS dipendenze, scenarioKey, cascadeDeselect -->
+  <script src="js/dependency-resolver.js"></script>
+
+  <!-- 3. Geometria parabole, conversione coordinate, Map SCENARIOS -->
+  <script src="js/geometry.js"></script>
+
+  <!-- 4. buildSVGDefs, buildEllipseGroup, buildOpenCurveGroup, renderDiagram -->
+  <script src="js/svg-renderer.js"></script>
+
+  <!-- 5. Hover dimming, hit overlay, _handleDiagramClick, _rebuildHitOverlay -->
+  <script src="js/diagram-interaction.js"></script>
+
+  <!-- 6. Tooltip IIFE + lens hit-testing geometrico -->
+  <script src="js/tooltip.js"></script>
+
+  <!-- 7. morphGroup, transitionToScenario, executeUpdate, buildSidebar, setTheme… -->
+  <script src="js/live-renderer.js"></script>
+
+  <!-- 8. applyViewTransform, zoomBy, animateFit, scheduleFit, initPan IIFE -->
+  <script src="js/zoom-pan.js"></script>
+
+  <!-- 9. loadClassContent, enterDetailView, exitDetailView, showContent… -->
+  <script src="js/detail-view.js"></script>
+
+  <!-- 10. downloadDiagram (export SVG / PDF) -->
+  <script src="js/download.js"></script>
+
+  <!-- 11. DOMContentLoaded — listener UI, tema, sidebar, init finale -->
+  <script src="js/init.js"></script>
+
 </body>
 </html>

@@ -44,12 +44,16 @@ body {
   height: 100vh; overflow: hidden; display: flex;
   transition: background .4s ease, color .4s ease;
 }
+/* Dot grid: SVG data URI tiled as a 3KB cached bitmap instead of a
+   full-viewport rasterised radial-gradient (~33 MB at DPR 2).
+   position:absolute avoids creating a permanent GPU compositor layer
+   (position:fixed would force one). overflow:hidden on body keeps it contained. */
 body::before {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-  background-image: radial-gradient(circle, rgba(74,158,255,.06) 1px, transparent 1px);
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='0.5' fill='rgba(74%2C158%2C255%2C0.06)'/%3E%3C/svg%3E");
   background-size: 28px 28px;
 }
 body.light::before {
-  background-image: radial-gradient(circle, rgba(29,78,216,.06) 1px, transparent 1px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='0.5' fill='rgba(29%2C78%2C216%2C0.06)'/%3E%3C/svg%3E");
 }
 

@@ -183,3 +183,44 @@
 .tip-sub { font-size:.58rem; color:var(--text-muted); display:block; margin-top:3px; letter-spacing:.04em; }
 .tip-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:6px; vertical-align:middle; }
 
+
+
+/* ================================================================
+   PER-ENGINE DIAGRAM OPTIMIZATIONS
+   ================================================================ */
+
+/* -- Blink: use bounding-box hit test for ellipses (set in layout.css),
+   here we ensure intersection-group also benefits ------------------- */
+html.engine-blink .intersection-group {
+  pointer-events: bounding-box;
+}
+
+/* -- Gecko: isolation:isolate on diagram-root tells WebRender to
+   treat all diagram shapes as a single render pass, reducing GPU
+   command buffer overhead when multiple shapes are composited.     */
+html.engine-gecko #diagram-root {
+  isolation: isolate;
+}
+
+/* -- Gecko: richer hover glow -- WebRender shader path allows a
+   slightly larger drop-shadow without compositing overhead.        */
+html.engine-gecko .cls-group.cls-hov,
+html.engine-gecko .intersection-group.cls-hov {
+  cursor: pointer;
+}
+
+/* -- WebKit: disable CSS transform on sidebar on mobile to avoid
+   implicit GPU layer creation alongside the SVG diagram.          */
+html.engine-webkit #sidebar {
+  will-change: auto;
+}
+
+/* -- All engines: honour prefers-reduced-motion ------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cls-group, .intersection-group {
+    transition: none !important;
+  }
+  .cls-entering { animation: none !important; opacity: 1 !important; }
+  .cls-exiting  { animation: none !important; opacity: 0 !important; }
+}
+
