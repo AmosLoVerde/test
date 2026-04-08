@@ -1,0 +1,1 @@
+### Tipologie di riduzioni polinomiali

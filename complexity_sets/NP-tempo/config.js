@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
-   complexity_sets/NP-c/config.js
+   complexity_sets/NP/config.js
    ─────────────────────────────────────────────────────────────
-   MANIFEST — definisce la struttura della classe NP-c.
+   MANIFEST — definisce la struttura della classe NP.
    I contenuti testuali sono nei file .md di questa cartella.
 
    Per aggiungere un nuovo problema:
@@ -11,8 +11,8 @@
 ════════════════════════════════════════════════════════════════ */
 
 window._CLASS_MANIFEST = window._CLASS_MANIFEST || {};
-window._CLASS_MANIFEST["NP-c"] = {
-  "fullLabel": "NP-complete",
+window._CLASS_MANIFEST["NP"] = {
+  "fullLabel": "NP — Nondeterministic Polynomial Time",
   "definition": "definition.md",
   "problems": [
     {

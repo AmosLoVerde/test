@@ -16,31 +16,31 @@ window._CLASS_MANIFEST["P"] = {
   definition: "definition.md",
   problems: [
     {
-      name: "Maximum Flow",
-      folder: "maximum-flow",
+      name: "Euler Path",
+      folder: "euler-path",
       description: "description.md",
       examples: [
         {
-          name: "Rete idrica",
+          name: "Esempio 1",
           file: "example1.md",
         },
         {
-          name: "Assegnamento task",
+          name: "Esempio 2",
           file: "example2.md",
         },
       ],
     },
     {
-      name: "Shortest Path",
-      folder: "shortest-path",
+      name: "Euler Cycle",
+      folder: "euler-cycle",
       description: "description.md",
       examples: [
         {
-          name: "GPS navigation",
+          name: "esempio 1",
           file: "example1.md",
         },
         {
-          name: "Network routing (OSPF)",
+          name: "esempio 2",
           file: "example2.md",
         },
       ],

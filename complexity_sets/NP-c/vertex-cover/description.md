@@ -1,1 +1,0 @@
-<p><strong>Vertex Cover</strong> chiede: dato un grafo non orientato G e un intero k, G ha un vertex cover di dimensione ≤ k? (Un vertex cover è un insieme S di vertici tale che ogni arco abbia almeno un estremo in S.)</p><p>Vertex Cover è NP-completo (via riduzione da Independent Set, che si riduce da 3-SAT). Ha una 2-approssimazione tramite matching massimale.</p>

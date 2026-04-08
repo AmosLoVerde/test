@@ -1,1 +1,0 @@
-<p><strong>Esempio: matching bipartito via max flow</strong></p><p>Il matching bipartito massimo si riduce a max flow: workers = nodi sinistri, job = nodi destri, s collegato a ogni worker, ogni job collegato a t, capacità 1 su tutti gli archi.</p><p>Max flow = matching massimo. Per 4 worker e 4 job, Edmonds-Karp trova un matching perfetto in O(V·E) se esiste.</p>

@@ -139,7 +139,7 @@
   padding-left: 14px;
 }
 #content-text {
-  font-family: 'EB Garamond', serif; font-size: 20px;
+  font-family: 'EB Garamond', serif; font-size: 17px;
   line-height: 1.78; color: var(--text); width: calc(100%);
 }
 #content-text p  { margin-bottom: 14px; }
@@ -153,6 +153,26 @@ body.light #content-text { color: var(--text); }
 #content-text ol {
   padding-left: 2.5rem;
 }
+
+#content-text blockquote {
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  overflow-x: auto;        /* ← aggiunto */
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+#content-text blockquote p {
+  margin: 0;
+}
+
+#content-text .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
 
 .definition-box {
   border: 1px solid var(--box-color);

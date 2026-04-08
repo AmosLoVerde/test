@@ -1,1 +1,0 @@
-<p><strong>SAT</strong> chiede: data una formula proposizionale φ (tipicamente in CNF), esiste un'assegnazione di valori di verità alle variabili che rende φ vera?</p><p>SAT è stato il primo problema dimostrato NP-completo (teorema di Cook-Levin, 1971). Il certificato è l'assegnazione soddisfacente, verificabile in O(n) valutando ogni clausola.</p>

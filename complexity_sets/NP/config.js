@@ -14,36 +14,5 @@ window._CLASS_MANIFEST = window._CLASS_MANIFEST || {};
 window._CLASS_MANIFEST["NP"] = {
   "fullLabel": "NP — Nondeterministic Polynomial Time",
   "definition": "definition.md",
-  "problems": [
-    {
-      "name": "Boolean Satisfiability (SAT)",
-      "folder": "boolean-satisfiability-sat",
-      "description": "description.md",
-      "examples": [
-        {
-          "name": "Istanza 3-SAT",
-          "file": "example1.md"
-        },
-        {
-          "name": "Circuit-SAT",
-          "file": "example2.md"
-        }
-      ]
-    },
-    {
-      "name": "Hamiltonian Path",
-      "folder": "hamiltonian-path",
-      "description": "description.md",
-      "examples": [
-        {
-          "name": "Grafo a 6 nodi",
-          "file": "example1.md"
-        },
-        {
-          "name": "Tour del cavallo",
-          "file": "example2.md"
-        }
-      ]
-    }
-  ]
+  "problems": []
 };

@@ -1,1 +1,0 @@
-<p><strong>Maximum Flow</strong> chiede: dato un network diretto con capacità sugli archi e due nodi distinti (sorgente s e pozzo t), qual è il flusso massimo trasmissibile da s a t?</p><p>Risolvibile in tempo polinomiale tramite Ford-Fulkerson con BFS (Edmonds-Karp, O(VE²)) o algoritmi push-relabel (O(V²E)).</p>
